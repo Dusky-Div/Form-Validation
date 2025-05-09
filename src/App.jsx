@@ -29,15 +29,39 @@ function App() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the form from submitting normally
+
+    // Validate the form data
     const validationErrors = validateForm(formData);
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
-      alert("Form submitted successfully!");
-    } else {
+    // If there are validation errors, prevent form submission
+    if (Object.keys(validationErrors).length > 0) {
       window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5090/api/students", {
+        // Correct backend URL (port 5000)
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Student data saved successfully!");
+      } else {
+        alert(`Error: ${data.error || "Unknown error"}`);
+      }
+    } catch (error) {
+      alert("Error saving data");
     }
   };
 

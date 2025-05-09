@@ -1,18 +1,20 @@
-const mysql = require("mysql2");
+// src/db/db.js
+import { Client } from "pg";
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root", // or your MySQL username
-  password: "new_password", // or your MySQL password
-  database: "form-validation",
+// Setup the database connection
+const client = new Client({
+  user: "postgres", // replace with your postgres username
+  host: "localhost", // or your postgres server IP if not localhost
+  database: "form_validation", // replace with the name of your database
+  password: "new_password", // replace with your password
+  port: 5432, // default port for PostgreSQL
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("Database connection failed:", err);
-    return;
-  }
-  console.log("Connected to MySQL database");
-});
+// Connect to the database
+client
+  .connect()
+  .then(() => console.log("Connected to PostgreSQL database"))
+  .catch((err) => console.error("Connection error", err.stack));
 
-module.exports = db;
+// Export the client so we can use it elsewhere in the app
+export default client;
