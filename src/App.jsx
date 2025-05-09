@@ -30,13 +30,11 @@ function App() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the form from submitting normally
+    e.preventDefault();
 
-    // Validate the form data
     const validationErrors = validateForm(formData);
     setErrors(validationErrors);
 
-    // If there are validation errors, prevent form submission
     if (Object.keys(validationErrors).length > 0) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
@@ -44,7 +42,6 @@ function App() {
 
     try {
       const response = await fetch("http://localhost:5090/api/students", {
-        // Correct backend URL (port 5000)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
