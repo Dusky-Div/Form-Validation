@@ -81,15 +81,15 @@ function App() {
         placeholder={label}
         value={formData[name]}
         onChange={handleChange}
-        className="input border border-gray-600 rounded-md p-2"
+        className="input border border-[#373737] rounded-md p-2"
         {...props}
       />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-10 px-4">
-      <div className="max-w-3xl mx-auto bg-gray-800 p-8 rounded-2xl shadow-lg">
+    <div className="min-h-screen bg-[#151515] text-white py-10 px-4">
+      <div className="max-w-3xl mx-auto bg-[#1c1c1c] border border-[#373737] p-8 rounded-2xl shadow-lg">
         <h1 className="text-3xl font-bold mb-8 text-center text-blue-400">
           Student Self-Evaluation Form
         </h1>
@@ -98,13 +98,13 @@ function App() {
           1. Basic Information
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {renderInput("Student Name", "studentName")}
-          {renderInput("USN", "usn")}
-          {renderInput("Branch", "branch")}
-          {renderInput("Semester", "semester", "number")}
-          {renderInput("Section", "section")}
-          {renderInput("Phone Number", "phoneNumber", "tel")}
-          {renderInput("Email ID", "email", "email")}
+          {renderInput("Student Name*", "studentName")}
+          {renderInput("USN*", "usn")}
+          {renderInput("Branch*", "branch")}
+          {renderInput("Semester*", "semester", "number")}
+          {renderInput("Section*", "section")}
+          {renderInput("Phone Number*", "phoneNumber", "tel")}
+          {renderInput("Email ID*", "email", "email")}
         </div>
 
         <h2 className="text-xl font-semibold mt-8 mb-4 text-blue-300">
@@ -135,13 +135,13 @@ function App() {
             placeholder="Comments on academic performance"
             value={formData.academicComments}
             onChange={handleChange}
-            className="input border border-gray-600 rounded-md p-2"
+            className="input border border-[#373737] rounded-md p-2"
             rows={4}
           />
         </div>
         <div className="flex flex-col mt-4">
           <div className="flex justify-between">
-            <p className="px-2 font-semibold">Preferred Study Method</p>
+            <p className="px-2 font-semibold">Preferred Study Method*</p>
             {errors.studyMethod && (
               <p className="px-2 text-red-500 text-sm font-light">
                 {errors.studyMethod}
@@ -152,7 +152,7 @@ function App() {
             name="studyMethod"
             value={formData.studyMethod}
             onChange={handleChange}
-            className="input border border-gray-600 rounded-md p-2"
+            className="input border border-[#373737] rounded-md p-2"
           >
             <option value="">Select Method</option>
             <option value="Reading">Reading</option>
@@ -196,7 +196,7 @@ function App() {
       <style>
         {`
           .input {
-            @apply w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500;
+            @apply w-full px-4 py-2 rounded-md bg-gray-700 text-white border border-[#373737] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500;
           }
         `}
       </style>
